@@ -5,10 +5,10 @@ global:
   # scrape_timeout is set to the global default (10s).
 # Remote write configuration (for Graphite, OpenTSDB, or InfluxDB).
 remote_write:
-  - url: "http://localhost:8086/api/v1/prom/write?u=admin&p=admin&db=prometheus"
+  - url: "http://influxdb:8086/api/v1/prom/write?u=prom&p=prom&db=prometheus"
 # Remote read configuration (for InfluxDB only at the moment).
 remote_read:
-  - url: "http://localhost:8086/api/v1/prom/read?u=admin&p=admin&db=prometheu"
+  - url: "http://influxdb:8086/api/v1/prom/read?u=prom&p=prom&db=prometheus"
 # Alertmanager configuration
 alerting:
   alertmanagers:

@@ -15,15 +15,15 @@ services:
     image: prom/prometheus
     container_name: prometheus
     volumes:
-      - D:\Dev\docker\monitoring\prometheus\config:/etc/prometheus/
-      - D:\Dev\docker\monitoring\prometheus\data:/prometheus/
+      - ./prometheus/config:/etc/prometheus/
+      - ./prometheus/data:/prometheus/
 
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
-      - '--storage.tsdb.retention=15d'
+      - '--storage.tsdb.retention=1h'
     ports:
       - 9090:9090
     networks:
@@ -56,8 +56,8 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - D:\Dev\docker\monitoring\grafana\datagrafana_data:/var/lib/grafana
-      - D:\Dev\docker\monitoring\grafana\provisioning/:/etc/grafana/provisioning/
+      - ./grafana/datagrafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
 #    env_file:
       #- ./grafana/config.monitoring
     networks:
@@ -77,7 +77,7 @@ services:
     volumes:
       # Data persistency
       # sudo mkdir -p /srv/docker/influxdb/data
-      - D:\Dev\docker\monitoring\influxdb\data:/var/lib/influxdb
+      - ./influxdb/data:/var/lib/influxdb
     networks:
       - back-tier
       - front-tier
